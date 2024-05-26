@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final authResponseModel = authResponseModelFromJson(jsonString);
-
 import 'dart:convert';
 
 AuthResponseModel authResponseModelFromJson(String str) => AuthResponseModel.fromJson(json.decode(str));

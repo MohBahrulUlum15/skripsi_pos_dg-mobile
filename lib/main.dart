@@ -22,6 +22,10 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
+          // theme: ThemeData(
+          //   colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
+          //   useMaterial3: true,
+          // ),
           // theme: ThemeData.light(useMaterial3: true),
           theme: ThemeData.light().copyWith(
             primaryColor: AppColor.primaryColor,
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
             ),
             appBarTheme: const AppBarTheme(
               backgroundColor: AppColor.primaryColor,
-              foregroundColor: Colors.white,
+              foregroundColor: AppColor.whiteColor,
             ),
             useMaterial3: true
           ),
