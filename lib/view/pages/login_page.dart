@@ -39,9 +39,7 @@ class _LoginPageState extends State<LoginPage> {
             Get.to(() => const HomePage());
           });
         } else {
-          // ignore: use_build_context_synchronously
           DInfo.dialogError(context, 'Gagal Login');
-          // ignore: use_build_context_synchronously
           DInfo.closeDialog(context);
         }
       }
@@ -185,69 +183,6 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 16.h,
                   ),
-                  // InkWell(
-                  //   onTap: () {
-                  //     DInfo.dialogNetral(context, 'This feature not ready');
-                  //     DInfo.closeDialog(context);
-                  //   },
-                  //   borderRadius: BorderRadius.circular(16.0),
-                  //   child: Container(
-                  //     width: widthSize*0.95,
-                  //     height: 54.h,
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(16.0),
-                  //         border: Border.all(
-                  //             color: Theme.of(context).colorScheme.secondary)),
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         Image.asset(
-                  //           'assets/google-icon-logo.png',
-                  //           height: 32,
-                  //           width: 32,
-                  //         ),
-                  //         const SizedBox(
-                  //           width: 12,
-                  //         ),
-                  //         Text(
-                  //           'Sign in with Google',
-                  //           style: TextStyle(
-                  //               fontSize: 16,
-                  //               fontWeight: FontWeight.w500,
-                  //               color: Theme.of(context).colorScheme.secondary),
-                  //         )
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 32.h,
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     Text(
-                  //       "Don't have account? ",
-                  //       style: TextStyle(
-                  //           fontSize: 16,
-                  //           fontWeight: FontWeight.w300,
-                  //           color: Theme.of(context).colorScheme.secondary),
-                  //     ),
-                  //     InkWell(
-                  //       onTap: () {
-                  //         DInfo.dialogNetral(context, 'This feature not ready');
-                  //         DInfo.closeDialog(context);
-                  //       },
-                  //       child: Text(
-                  //         "Click here",
-                  //         style: TextStyle(
-                  //             fontSize: 16,
-                  //             fontWeight: FontWeight.w600,
-                  //             color: Theme.of(context).colorScheme.primary),
-                  //       ),
-                  //     )
-                  //   ],
-                  // ),
                 ],
               ),
             ),

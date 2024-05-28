@@ -39,22 +39,22 @@ class JadwalModel {
       };
 }
 
-class Bidan {
-  final int? bidanId;
-  final String? name;
+// class Bidan {
+//   final int? bidanId;
+//   final String? name;
 
-  Bidan({
-    this.bidanId,
-    this.name,
-  });
+//   Bidan({
+//     this.bidanId,
+//     this.name,
+//   });
 
-  factory Bidan.fromJson(Map<String, dynamic> json) => Bidan(
-        bidanId: json["bidan_id"],
-        name: json["name"],
-      );
+//   factory Bidan.fromJson(Map<String, dynamic> json) => Bidan(
+//         bidanId: json["bidan_id"],
+//         name: json["name"],
+//       );
 
-  Map<String, dynamic> toJson() => {
-        "bidan_id": bidanId,
-        "name": name,
-      };
-}
+//   Map<String, dynamic> toJson() => {
+//         "bidan_id": bidanId,
+//         "name": name,
+//       };
+// }

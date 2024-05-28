@@ -12,11 +12,22 @@ class AuthController extends GetxController {
   bool get loading => _loading.value;
   final _successLogin = false.obs;
   bool get successLogin => _successLogin.value;
+  final _successLogout = false.obs;
+  bool get successLogout => _successLogout.value;
 
   login(String username, String password) async {
     _loading.value = true;
     update();
     _successLogin.value = await SourceAuth.login(username, password);
+    update();
+    _loading.value = false;
+    update();
+  }
+
+  logout() async {
+    _loading.value = true;
+    update();
+    _successLogout.value = await SourceAuth.logout();
     update();
     _loading.value = false;
     update();

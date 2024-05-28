@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skripsi_pos_dg/data/models/jadwal_model.dart';
 import 'package:skripsi_pos_dg/data/remote/controller/c_jadwal.dart';
+import 'package:skripsi_pos_dg/view/pages/bidan/jadwal_detail_page_bidan.dart';
 
-class JadwalPage extends StatefulWidget {
-  const JadwalPage({super.key});
+class JadwalPageBidan extends StatefulWidget {
+  const JadwalPageBidan({super.key});
 
   @override
-  State<JadwalPage> createState() => _JadwalPageState();
+  State<JadwalPageBidan> createState() => _JadwalPageBidanState();
 }
 
-class _JadwalPageState extends State<JadwalPage> {
+class _JadwalPageBidanState extends State<JadwalPageBidan> {
   final cJadwal = Get.put(JadwalController());
 
   refresh() {
@@ -49,12 +50,20 @@ class _JadwalPageState extends State<JadwalPage> {
                       JadwalModel jadwal = _.listJadwal[index];
                       return Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Column(
-                          children: [
-                            Text('${jadwal.namaPosyandu}'),
-                            Text('${jadwal.tanggal}'),
-                            // Text('${jadwal.bidans!.length.toString()}'),
-                          ],
+                        child: InkWell(
+                          onTap: () {
+                            // DInfo.snackBarCustom(context, '${jadwal.id}');
+                            Get.to(JadwalDetailPageBidan(
+                              id: jadwal.id!,
+                            ));
+                          },
+                          child: Column(
+                            children: [
+                              Text('${jadwal.namaPosyandu}'),
+                              Text('${jadwal.tanggal}'),
+                              // Text('${jadwal.bidans!.length.toString()}'),
+                            ],
+                          ),
                         ),
                       );
                     },
