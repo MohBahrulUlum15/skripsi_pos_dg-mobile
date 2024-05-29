@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:skripsi_pos_dg/config/app_color.dart';
 import 'package:skripsi_pos_dg/view/pages/splashscreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  initializeDateFormatting(
+    'id_ID',
+  ).then((value) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -28,17 +34,16 @@ class MyApp extends StatelessWidget {
           // ),
           // theme: ThemeData.light(useMaterial3: true),
           theme: ThemeData.light().copyWith(
-            primaryColor: AppColor.primaryColor,
-            colorScheme: const ColorScheme.light().copyWith(
-              primary: AppColor.primaryColor,
-              secondary: AppColor.secondaryColor,
-            ),
-            appBarTheme: const AppBarTheme(
-              backgroundColor: AppColor.primaryColor,
-              foregroundColor: AppColor.whiteColor,
-            ),
-            useMaterial3: true
-          ),
+              primaryColor: AppColor.primaryColor,
+              colorScheme: const ColorScheme.light().copyWith(
+                primary: AppColor.primaryColor,
+                secondary: AppColor.secondaryColor,
+              ),
+              appBarTheme: const AppBarTheme(
+                backgroundColor: AppColor.primaryColor,
+                foregroundColor: AppColor.whiteColor,
+              ),
+              useMaterial3: true),
           // darkTheme: ThemeData.dark(useMaterial3: true),
           home: child,
         );
