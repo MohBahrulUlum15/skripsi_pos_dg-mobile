@@ -25,4 +25,26 @@ class SourcePemeriksaan {
       return list.map((e) => PemeriksaanModel.fromJson(e)).toList();
     }
   }
+
+  static Future<bool> postPemeriksaan(
+      int id, int beratBadan, int tinggiBadan) async {
+    String url = '${Api.BASE_URL}/post-pemeriksaan';
+    final cAuth = Get.put(AuthController());
+    String token = cAuth.data.token!;
+    Map? responseBody = await AppRequest.postMethod(
+      url,
+      {
+        'id': id,
+        'berat_badan': beratBadan,
+        'tinggi_badan': tinggiBadan,
+      },
+      token: token,
+    );
+
+    if (responseBody == null || !responseBody['success']) {
+      return false;
+    } else {
+      return responseBody['success'];
+    }
+  }
 }

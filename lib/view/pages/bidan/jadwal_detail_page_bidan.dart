@@ -135,13 +135,16 @@ class _JadwalDetailPageBidanState extends State<JadwalDetailPageBidan>
                     Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                            Get.to(
+                          onPressed: () async {
+                            bool? result = await Get.to(
                               () => PeriksaPageBidan(
                                 idPemeriksaan: pemeriksaan.idPemeriksaan,
                                 namaBalita: pemeriksaan.name,
                               ),
                             );
+                            if (result == true) {
+                              refresh();
+                            }
                           },
                           child: const Text('Periksa'),
                         ),
