@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:skripsi_pos_dg/config/app_color.dart';
 import 'package:skripsi_pos_dg/data/remote/controller/c_auth.dart';
 import 'package:skripsi_pos_dg/view/pages/balita_page.dart';
+import 'package:skripsi_pos_dg/view/pages/bidan/posyandu_page_bidan.dart';
 import 'package:skripsi_pos_dg/view/pages/info_page.dart';
 import 'package:skripsi_pos_dg/view/pages/jadwal_page.dart';
 import 'package:skripsi_pos_dg/view/pages/bidan/home_page_bidan.dart';
@@ -30,9 +31,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pagesForBidan = [
     const HomePageBidan(),
     const JadwalPageBidan(),
-    const Center(
-      child: Text('Posyandu for Bidan'),
-    ),
+    const PosyanduPageBidan(),
     const Center(
       child: Text('Info for Bidan'),
     ),

@@ -38,45 +38,6 @@ class _JadwalDetailPageBidanState extends State<JadwalDetailPageBidan>
     super.dispose();
   }
 
-  Widget buildList(List<PemeriksaanModel> list) {
-    return ListView.builder(
-      itemCount: list.length,
-      itemBuilder: (context, index) {
-        PemeriksaanModel pemeriksaan = list[index];
-        return Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: InkWell(
-            onTap: () {},
-            child: Container(
-              padding: const EdgeInsets.all(8.0),
-              decoration: const BoxDecoration(
-                  color: AppColor.secondaryColor,
-                  borderRadius: BorderRadius.all(Radius.circular(16))),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('${pemeriksaan.name}'),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  Text('${pemeriksaan.tanggalLahir}'),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  Text('${pemeriksaan.jenisKelamin}'),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  Text('${pemeriksaan.usia}'),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   Widget buildListBelum(List<PemeriksaanModel> list) {
     return ListView.builder(
       itemCount: list.length,
