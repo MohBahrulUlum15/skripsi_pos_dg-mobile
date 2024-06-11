@@ -2,12 +2,20 @@ import 'package:d_info/d_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skripsi_pos_dg/config/app_color.dart';
+import 'package:skripsi_pos_dg/data/remote/controller/c_fuzzy.dart';
 import 'package:skripsi_pos_dg/data/remote/controller/c_pemeriksaan.dart';
+import 'package:skripsi_pos_dg/view/widget/custom_dialog_for_fuzzy.dart';
 
 class PeriksaPageBidan extends StatefulWidget {
   final int? idPemeriksaan;
-  final String? namaBalita;
-  const PeriksaPageBidan({super.key, this.idPemeriksaan, this.namaBalita});
+  final double? usiaBalita;
+  final String? namaBalita, jenisKelaminBalita;
+  const PeriksaPageBidan(
+      {super.key,
+      this.idPemeriksaan,
+      this.namaBalita,
+      this.usiaBalita,
+      this.jenisKelaminBalita});
 
   @override
   State<PeriksaPageBidan> createState() => _PeriksaPageBidanState();
@@ -15,6 +23,7 @@ class PeriksaPageBidan extends StatefulWidget {
 
 class _PeriksaPageBidanState extends State<PeriksaPageBidan> {
   final cPemeriksaan = Get.put(PemeriksaanController());
+  final cFuzzy = Get.put(FuzzyController());
   final formKey = GlobalKey<FormState>();
 
   final TextEditingController beratBadanController = TextEditingController();
@@ -30,8 +39,8 @@ class _PeriksaPageBidanState extends State<PeriksaPageBidan> {
     postPemeriksaan() async {
       await cPemeriksaan.postPemeriksaan(
           widget.idPemeriksaan!,
-          int.parse(beratBadanController.value.text),
-          int.parse(tinggiBadanController.value.text));
+          double.parse(beratBadanController.value.text),
+          double.parse(tinggiBadanController.value.text));
       if (cPemeriksaan.successPostPemeriksaan) {
         DInfo.dialogSuccess(context, 'Berhasil Menyimpan Data');
         DInfo.closeDialog(context, actionAfterClose: () {
@@ -40,6 +49,31 @@ class _PeriksaPageBidanState extends State<PeriksaPageBidan> {
       } else {
         DInfo.dialogError(context, 'Gagal Menyimpan Data');
         DInfo.closeDialog(context);
+      }
+    }
+
+    postPemeriksaanForGetFuzzy() async {
+      await cFuzzy.postFuzzy(
+        widget.usiaBalita!,
+        double.parse(beratBadanController.value.text),
+        double.parse(tinggiBadanController.value.text),
+        widget.jenisKelaminBalita!,
+      );
+      if (cFuzzy.successPostFuzzy) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return CustomDialogForFuzzy(
+                responseData: cFuzzy.responseData,
+                onConfirm: () {
+                  postPemeriksaan();
+                },
+                onClose: () {});
+          },
+        );
+      } else {
+        DInfo.dialogError(context, 'Gagal Menyimpan Data');
       }
     }
 
@@ -54,6 +88,8 @@ class _PeriksaPageBidanState extends State<PeriksaPageBidan> {
             child: Column(
               children: [
                 Text('${widget.namaBalita}'),
+                Text('Usia: ${widget.usiaBalita} Bulan'),
+                Text('Jenis Kelamin: ${widget.jenisKelaminBalita}'),
                 TextFormField(
                   controller: beratBadanController,
                   decoration: const InputDecoration(
@@ -86,7 +122,8 @@ class _PeriksaPageBidanState extends State<PeriksaPageBidan> {
                         DInfo.dialogError(
                             context, 'Tinggi Badan can\'t be empty');
                       } else {
-                        postPemeriksaan();
+                        // postPemeriksaan();
+                        postPemeriksaanForGetFuzzy();
                         // DInfo.dialogSuccess(context, 'fungsi login');
                       }
                     }

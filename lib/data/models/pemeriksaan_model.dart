@@ -17,8 +17,8 @@ class PemeriksaanModel {
   final DateTime? tanggalLahir;
   final String? jenisKelamin;
   final int? usia;
-  final int? beratBadan;
-  final int? tinggiBadan;
+  final String? beratBadan;
+  final String? tinggiBadan;
   final String? status;
 
   PemeriksaanModel({

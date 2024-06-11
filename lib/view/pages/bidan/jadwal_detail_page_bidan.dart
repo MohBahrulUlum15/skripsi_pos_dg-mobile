@@ -101,6 +101,8 @@ class _JadwalDetailPageBidanState extends State<JadwalDetailPageBidan>
                               () => PeriksaPageBidan(
                                 idPemeriksaan: pemeriksaan.idPemeriksaan,
                                 namaBalita: pemeriksaan.name,
+                                usiaBalita: pemeriksaan.usia?.toDouble(),
+                                jenisKelaminBalita: pemeriksaan.jenisKelamin,
                               ),
                             );
                             if (result == true) {

@@ -114,4 +114,23 @@ class AppRequest {
       return null;
     }
   }
+
+  static Future<Map<String, dynamic>?> postMethodForFuzzy(String url, Map<String, dynamic> body) async {
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(body),
+      );
+
+      if (response.statusCode == 200) {
+        return json.decode(response.body);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
+  }
 }

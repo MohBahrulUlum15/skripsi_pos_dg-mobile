@@ -27,7 +27,7 @@ class SourcePemeriksaan {
   }
 
   static Future<bool> postPemeriksaan(
-      int id, int beratBadan, int tinggiBadan) async {
+      int id, double beratBadan, double tinggiBadan) async {
     String url = '${Api.BASE_URL}/post-pemeriksaan';
     final cAuth = Get.put(AuthController());
     String token = cAuth.data.token!;

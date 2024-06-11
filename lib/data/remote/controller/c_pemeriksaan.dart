@@ -27,7 +27,7 @@ class PemeriksaanController extends GetxController {
     update();
   }
 
-  postPemeriksaan(int id, int beratBadan, int tinggiBadan) async {
+  postPemeriksaan(int id, double beratBadan, double tinggiBadan) async {
     _loading.value = true;
     update();
     _successPOstPemeriksaan.value =
