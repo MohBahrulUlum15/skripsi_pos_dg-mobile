@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:skripsi_pos_dg/data/models/fuzzy_model.dart';
 
 class CustomDialogForFuzzy extends StatefulWidget {

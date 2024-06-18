@@ -6,8 +6,8 @@ class PemeriksaanController extends GetxController {
   final _loading = false.obs;
   bool get loading => _loading.value;
 
-  final _successPOstPemeriksaan = false.obs;
-  bool get successPostPemeriksaan => _successPOstPemeriksaan.value;
+  final _successPostPemeriksaan = false.obs;
+  bool get successPostPemeriksaan => _successPostPemeriksaan.value;
 
   final _listPemeriksaan = <PemeriksaanModel>[].obs;
   List<PemeriksaanModel> get listPemeriksaan => _listPemeriksaan.value;
@@ -27,11 +27,35 @@ class PemeriksaanController extends GetxController {
     update();
   }
 
-  postPemeriksaan(int id, double beratBadan, double tinggiBadan) async {
+  postPemeriksaan(
+    int id,
+    double beratBadan,
+    double tinggiBadan,
+    String statusGiziBBU,
+    double deffValBBU,
+    double valDegreeBBU,
+    String statusGiziTBU,
+    double deffValTBU,
+    double valDegreeTBU,
+    String statusGiziBBTB,
+    double deffValBBTB,
+    double valDegreeBBTB,
+  ) async {
     _loading.value = true;
     update();
-    _successPOstPemeriksaan.value =
-        await SourcePemeriksaan.postPemeriksaan(id, beratBadan, tinggiBadan);
+    _successPostPemeriksaan.value = await SourcePemeriksaan.postPemeriksaan(
+        id,
+        beratBadan,
+        tinggiBadan,
+        statusGiziBBU,
+        deffValBBU,
+        valDegreeBBU,
+        statusGiziTBU,
+        deffValTBU,
+        valDegreeTBU,
+        statusGiziBBTB,
+        deffValBBTB,
+        valDegreeBBTB);
     update();
     _loading.value = false;
     update();

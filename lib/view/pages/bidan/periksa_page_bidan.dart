@@ -2,6 +2,7 @@ import 'package:d_info/d_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skripsi_pos_dg/config/app_color.dart';
+import 'package:skripsi_pos_dg/data/models/fuzzy_model.dart';
 import 'package:skripsi_pos_dg/data/remote/controller/c_fuzzy.dart';
 import 'package:skripsi_pos_dg/data/remote/controller/c_pemeriksaan.dart';
 import 'package:skripsi_pos_dg/view/widget/custom_dialog_for_fuzzy.dart';
@@ -34,15 +35,60 @@ class _PeriksaPageBidanState extends State<PeriksaPageBidan> {
     super.initState();
   }
 
+  double checkDeggreForAll(List<double> degree) {
+    double result = 0.0;
+    for (int i = 0; i < degree.length; i++) {
+      if (degree[i] != 0.0) {
+        result = degree[i];
+      }
+    }
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
-    postPemeriksaan() async {
+    postPemeriksaan(FuzzyModel data) async {
+      List<double> listDegreeBBU = [
+        data.hasil!.bbU!.bbUSangatKurangDegree!,
+        data.hasil!.bbU!.bbUKurangDegree!,
+        data.hasil!.bbU!.bbUNormalDegree!,
+        data.hasil!.bbU!.bbUResikoBbLebihDegree!,
+      ];
+      List<double> listDegreeTBU = [
+        data.hasil!.tbU!.tbUSangatPendekDegree!,
+        data.hasil!.tbU!.tbUPendekDegree!,
+        data.hasil!.tbU!.tbUNormalDegree!,
+        data.hasil!.tbU!.tbUPendekDegree!,
+      ];
+      List<double> listDegreeBBTB = [
+        data.hasil!.bbTb!.bbTbGiziBurukDegree!,
+        data.hasil!.bbTb!.bbTbGiziKurangDegree!,
+        data.hasil!.bbTb!.bbTbGiziNormalDegree!,
+        data.hasil!.bbTb!.bbTbBrskGiziLebihDegree!,
+        data.hasil!.bbTb!.bbTbGiziLebihDegree!,
+        data.hasil!.bbTb!.bbTbGiziObesitasDegree!,
+      ];
+      final degreeBBU = checkDeggreForAll(listDegreeBBU);
+      final degreeTBU = checkDeggreForAll(listDegreeTBU);
+      final degreeBBTB = checkDeggreForAll(listDegreeBBTB);
+
       await cPemeriksaan.postPemeriksaan(
-          widget.idPemeriksaan!,
-          double.parse(beratBadanController.value.text),
-          double.parse(tinggiBadanController.value.text));
+        widget.idPemeriksaan!,
+        data.beratBadan!,
+        data.tinggiBadan!,
+        data.hasil!.bbU!.statusGizi!,
+        data.hasil!.bbU!.defuzzifiedValue!,
+        degreeBBU,
+        data.hasil!.tbU!.statusGizi!,
+        data.hasil!.tbU!.defuzzifiedValue!,
+        degreeTBU,
+        data.hasil!.bbTb!.statusGizi!,
+        data.hasil!.bbTb!.defuzzifiedValue!,
+        degreeBBTB,
+      );
       if (cPemeriksaan.successPostPemeriksaan) {
         DInfo.dialogSuccess(context, 'Berhasil Menyimpan Data');
+        // DInfo.dialogNetral(context, degreeBBU.toString());
         DInfo.closeDialog(context, actionAfterClose: () {
           Get.back(result: true);
         });
@@ -67,7 +113,7 @@ class _PeriksaPageBidanState extends State<PeriksaPageBidan> {
             return CustomDialogForFuzzy(
                 responseData: cFuzzy.responseData,
                 onConfirm: () {
-                  postPemeriksaan();
+                  postPemeriksaan(cFuzzy.responseData);
                 },
                 onClose: () {});
           },
@@ -128,7 +174,7 @@ class _PeriksaPageBidanState extends State<PeriksaPageBidan> {
                       }
                     }
                   },
-                  child: const Text('Simpan'),
+                  child: const Text('Periksa'),
                 ),
               ],
             ),

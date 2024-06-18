@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:skripsi_pos_dg/data/models/posyandu_model.dart';
 import 'package:skripsi_pos_dg/data/remote/controller/c_posyandu.dart';
+import 'package:skripsi_pos_dg/view/pages/bidan/posyandu_detail_page.dart';
 
 class PosyanduPageBidan extends StatefulWidget {
   const PosyanduPageBidan({super.key});
@@ -67,7 +67,9 @@ class _PosyanduPageBidanState extends State<PosyanduPageBidan> {
             title: Text(posyandu.name!),
             subtitle: Text(posyandu.alamat!),
             onTap: () {
-              // Get.toNamed('/jadwal-posyandu', arguments: posyandu);
+              Get.to(
+                () => PosyanduDetailPageBidan(id: posyandu.id!),
+              );
             },
           ),
         );

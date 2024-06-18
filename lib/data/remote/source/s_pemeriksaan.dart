@@ -27,7 +27,19 @@ class SourcePemeriksaan {
   }
 
   static Future<bool> postPemeriksaan(
-      int id, double beratBadan, double tinggiBadan) async {
+    int id,
+    double beratBadan,
+    double tinggiBadan,
+    String statusGiziBBU,
+    double deffValBBU,
+    double valDegreeBBU,
+    String statusGiziTBU,
+    double deffValTBU,
+    double valDegreeTBU,
+    String statusGiziBBTB,
+    double deffValBBTB,
+    double valDegreeBBTB,
+  ) async {
     String url = '${Api.BASE_URL}/post-pemeriksaan';
     final cAuth = Get.put(AuthController());
     String token = cAuth.data.token!;
@@ -37,6 +49,15 @@ class SourcePemeriksaan {
         'id': id,
         'berat_badan': beratBadan,
         'tinggi_badan': tinggiBadan,
+        'status_gizi_bb_u': statusGiziBBU,
+        'deff_val_bb_u': deffValBBU,
+        'val_degree_bb_u': valDegreeBBU,
+        'status_gizi_tb_u': statusGiziTBU,
+        'deff_val_tb_u': deffValTBU,
+        'val_degree_tb_u': valDegreeTBU,
+        'status_gizi_bb_tb': statusGiziBBTB,
+        'deff_val_bb_tb': deffValBBTB,
+        'val_degree_bb_tb': valDegreeBBTB
       },
       token: token,
     );

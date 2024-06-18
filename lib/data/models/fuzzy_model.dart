@@ -63,7 +63,7 @@ class Hasil {
 
 class BbTb {
   final double? defuzzifiedValue;
-  final String? satatusGizi;
+  final String? statusGizi;
   final double? bbTbGiziBurukDegree;
   final double? bbTbGiziKurangDegree;
   final double? bbTbGiziNormalDegree;
@@ -73,7 +73,7 @@ class BbTb {
 
   BbTb({
     this.defuzzifiedValue,
-    this.satatusGizi,
+    this.statusGizi,
     this.bbTbGiziBurukDegree,
     this.bbTbGiziKurangDegree,
     this.bbTbGiziNormalDegree,
@@ -84,7 +84,7 @@ class BbTb {
 
   factory BbTb.fromJson(Map<String, dynamic> json) => BbTb(
         defuzzifiedValue: json["defuzzified_value"]?.toDouble(),
-        satatusGizi: json["satatus gizi"],
+        statusGizi: json["status_gizi"],
         bbTbGiziBurukDegree: json["bb_tb_gizi_buruk_degree"]?.toDouble(),
         bbTbGiziKurangDegree: json["bb_tb_gizi_kurang_degree"]?.toDouble(),
         bbTbGiziNormalDegree: json["bb_tb_gizi_normal_degree"]?.toDouble(),
@@ -96,7 +96,7 @@ class BbTb {
 
   Map<String, dynamic> toJson() => {
         "defuzzified_value": defuzzifiedValue,
-        "satatus gizi": satatusGizi,
+        "status_gizi": statusGizi,
         "bb_tb_gizi_buruk_degree": bbTbGiziBurukDegree,
         "bb_tb_gizi_kurang_degree": bbTbGiziKurangDegree,
         "bb_tb_gizi_normal_degree": bbTbGiziNormalDegree,
