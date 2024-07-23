@@ -8,6 +8,7 @@ import 'package:skripsi_pos_dg/view/pages/info_page.dart';
 import 'package:skripsi_pos_dg/view/pages/jadwal_page.dart';
 import 'package:skripsi_pos_dg/view/pages/bidan/home_page_bidan.dart';
 import 'package:skripsi_pos_dg/view/pages/bidan/jadwal_page_bidan.dart';
+import 'package:skripsi_pos_dg/view/pages/orangtua/balita_page_ortu.dart';
 import 'package:skripsi_pos_dg/view/pages/orangtua/home_page_ortu.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pagesForOrtu = [
     const HomePageOrtu(),
     const JadwalPage(),
-    const BalitaPage(),
+    const BalitaPageOrtu(),
     const InfoPage(),
   ];
 

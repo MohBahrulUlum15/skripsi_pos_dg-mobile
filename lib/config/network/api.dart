@@ -4,5 +4,5 @@ class Api {
   static const BASE_URL = "https://skripsi-bahrul.farulwananda.com/api";
 
   static const BASE_URL_FOR_FUZZY =
-      "https://44a0-125-166-117-136.ngrok-free.app/deteksi-gizi";
+      "https://f477-103-109-209-254.ngrok-free.app/deteksi-gizi";
 }

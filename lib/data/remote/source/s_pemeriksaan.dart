@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:skripsi_pos_dg/config/network/api.dart';
 import 'package:skripsi_pos_dg/config/network/app_request.dart';
+import 'package:skripsi_pos_dg/data/models/detail_balita_model.dart';
 import 'package:skripsi_pos_dg/data/models/pemeriksaan_model.dart';
 import 'package:skripsi_pos_dg/data/remote/controller/c_auth.dart';
 
@@ -21,8 +22,26 @@ class SourcePemeriksaan {
       return [];
     } else {
       List list = responseBody['data'];
-      print(list);
       return list.map((e) => PemeriksaanModel.fromJson(e)).toList();
+    }
+  }
+
+  static Future<List<DetailBalitaModel>> getListPemeriksaanDetailBalita(
+      int balitaId) async {
+    String url = '${Api.BASE_URL}/pemeriksaan/$balitaId';
+    final cAuth = Get.put(AuthController());
+    String token = cAuth.data.token!;
+    Map? responseBody = await AppRequest.getMethod(url, token);
+
+    if (responseBody == null) {
+      return [];
+    }
+
+    if (!responseBody['success']) {
+      return [];
+    } else {
+      List list = responseBody['data'];
+      return list.map((e) => DetailBalitaModel.fromJson(e)).toList();
     }
   }
 

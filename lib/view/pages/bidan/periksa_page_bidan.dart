@@ -139,7 +139,7 @@ class _PeriksaPageBidanState extends State<PeriksaPageBidan> {
                 TextFormField(
                   controller: beratBadanController,
                   decoration: const InputDecoration(
-                    labelText: 'Berat Badan',
+                    labelText: 'Berat Badan (Kg)',
                     labelStyle: TextStyle(
                       color: AppColor.darkGreyColor,
                     ),
@@ -149,7 +149,7 @@ class _PeriksaPageBidanState extends State<PeriksaPageBidan> {
                 TextFormField(
                   controller: tinggiBadanController,
                   decoration: const InputDecoration(
-                    labelText: 'Tinggi Badan',
+                    labelText: 'Tinggi Badan (Cm)',
                     labelStyle: TextStyle(
                       color: AppColor.darkGreyColor,
                     ),

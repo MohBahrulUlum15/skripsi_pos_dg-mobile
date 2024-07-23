@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:skripsi_pos_dg/config/app_format.dart';
 import 'package:skripsi_pos_dg/data/models/balita_in_posyandu_model.dart';
 import 'package:skripsi_pos_dg/data/remote/controller/c_detail_posyandu.dart';
-import 'package:skripsi_pos_dg/data/remote/controller/c_posyandu.dart';
+import 'package:skripsi_pos_dg/view/pages/balita/balita_detail_page.dart';
 
 class PosyanduDetailPageBidan extends StatefulWidget {
   final int id;
@@ -64,11 +64,19 @@ class _PosyanduDetailPageBidanState extends State<PosyanduDetailPageBidan> {
       itemCount: listBalitaInPosyandu.length,
       itemBuilder: (context, index) {
         return Card(
-          child: ListTile(
-            title: Text(listBalitaInPosyandu[index].name!),
-            subtitle: Text(listBalitaInPosyandu[index].jenisKelamin!),
-            trailing:
-                Text(AppFormat.date(listBalitaInPosyandu[index].tanggalLahir!)),
+          child: InkWell(
+            onTap: () {
+              Get.to(() => BalitaDetailPage(
+                    balitaID: listBalitaInPosyandu[index].id!,
+                    balitaName: listBalitaInPosyandu[index].name!,
+                  ));
+            },
+            child: ListTile(
+              title: Text(listBalitaInPosyandu[index].name!),
+              subtitle: Text(listBalitaInPosyandu[index].jenisKelamin!),
+              trailing: Text(
+                  AppFormat.date(listBalitaInPosyandu[index].tanggalLahir!)),
+            ),
           ),
         );
       },

@@ -46,34 +46,63 @@ class _CustomDialogForFuzzyState extends State<CustomDialogForFuzzy>
     return WillPopScope(
       onWillPop: () async => false,
       child: AlertDialog(
-        title: Text('Data Pemeriksaan'),
+        title: Text('Hasil Pemeriksaan'),
+        titleTextStyle: TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              Text('Usia: ${widget.responseData.usia}'),
-              Text('Berat Badan: ${widget.responseData.beratBadan}'),
-              Text('Tinggi Badan: ${widget.responseData.tinggiBadan}'),
               // Display other relevant data from responseData as needed
               if (widget.responseData.hasil != null)
-                Text('Hasil: ${widget.responseData.hasil!.toJson()}'),
+                Column(
+                  children: [
+                    Text('Usia: ${widget.responseData.usia}'),
+                    const SizedBox(height: 4),
+                    Text('Berat Badan: ${widget.responseData.beratBadan}'),
+                    const SizedBox(height: 4),
+                    Text('Tinggi Badan: ${widget.responseData.tinggiBadan}'),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Detail Status Gizi Balita',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            'BB/U: ${widget.responseData.hasil!.bbU!.statusGizi}'),
+                        const SizedBox(height: 4),
+                        Text(
+                            'TB/U: ${widget.responseData.hasil!.tbU!.statusGizi}'),
+                        const SizedBox(height: 4),
+                        Text(
+                            'BB/TB: ${widget.responseData.hasil!.bbTb!.statusGizi}'),
+                      ],
+                    )
+                  ],
+                )
             ],
           ),
         ),
         actions: <Widget>[
           TextButton(
-            child: Text('Confirm'),
+            child: Text('Simpan Data'),
             onPressed: () {
               widget.onConfirm();
               Navigator.of(context).pop();
             },
           ),
-          TextButton(
-            child: Text('Close'),
-            onPressed: () {
-              widget.onClose();
-              Navigator.of(context).pop();
-            },
-          ),
+          // TextButton(
+          //   child: Text('Close'),
+          //   onPressed: () {
+          //     widget.onClose();
+          //     Navigator.of(context).pop();
+          //   },
+          // ),
         ],
       ),
     );
